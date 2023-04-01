@@ -2,6 +2,7 @@ package tests;
 
 import dataForTest.Student;
 import dataForTest.StudentGenerationWithFaker;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.StudentRegistrationFormPage;
 
@@ -12,7 +13,7 @@ public class StudentRegistrationFormTest extends TestBase {
 
     StudentRegistrationFormPage registrationFormPage = new StudentRegistrationFormPage();
 
-
+    @Tag("registrationFormTestWithParam")
     @Test
     public void registrationFormTest() {
         Student student = StudentGenerationWithFaker.generationNewStudentOnlyFaker();
@@ -45,7 +46,6 @@ public class StudentRegistrationFormTest extends TestBase {
                 .verifyResult("Picture", "ljv.png")
                 .verifyResult("Address", student.getAddress())
                 .verifyResult("State and City", student.getState() + " " + student.getCity());
-
 
 
     }

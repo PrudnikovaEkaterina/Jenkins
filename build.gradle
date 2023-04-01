@@ -45,8 +45,8 @@ test {
     useJUnitPlatform()
 }
 
-task fillForm_test(type: Test) {
+task registrationFormTestWithParam(type: Test) {
     useJUnitPlatform {
-        includeTags  ("fillForm")
+        includeTags  ("registrationFormTestWithParam")
     }
 }
