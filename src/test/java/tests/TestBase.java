@@ -16,12 +16,13 @@ public class TestBase {
 
     @BeforeAll
     static void beforeall() {
-        Configuration.holdBrowserOpen = true;
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+        Configuration.remote = "https://user1:1234@"+System.getProperty("selenoidUrl","selenoid.autotests.cloud/wd/hub");//запускает автотесты не локально а через selenoid
         Configuration.browser = System.getProperty("browser","chrome");
-        Configuration.browserVersion = System.getProperty("browserVersion", "100.0");
+        Configuration.browserVersion = System.getProperty("browserVersion", "100.0"); //нельзя ставить версию больше чем на selenoid
         Configuration.browserSize = System.getProperty("browserSize","1920x1080");
         Configuration.baseUrl = System.getProperty("baseUrl","https://demoqa.com");
-        Configuration.remote = "https://user1:1234@"+System.getProperty("selenoidUrl","selenoid.autotests.cloud/wd/hub");
+
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
@@ -35,7 +36,10 @@ public class TestBase {
     void addListener() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
+    // добавляется сценарий теста как в IDEA (шаги)
+    // + в build.gradle добавили сначало зависимость "io.qameta.allure:allure-selenide:2.13.6"
 
+    //Перед этими настройками добавили файл в дирректорию java/helpers название файла Attach c методами
     @AfterEach
     void addAttachments() {
         Attach.screenshotAs("Last screenshot");
