@@ -15,7 +15,7 @@ import java.util.Map;
 public class TestBase {
 
     @BeforeAll
-    static void beforeall() {
+    static void beforeAll() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
         Configuration.remote = "https://user1:1234@"+System.getProperty("selenoidUrl","selenoid.autotests.cloud/wd/hub");//запускает автотесты не локально а через selenoid
         Configuration.browser = System.getProperty("BROWSER","chrome");
