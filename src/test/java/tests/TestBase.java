@@ -16,7 +16,7 @@ public class TestBase {
 
     @BeforeAll
     static void beforeAll() {
-        Configuration.remote = "https://user1:1234@"+System.getProperty("selenoidUrl","selenoid.autotests.cloud/wd/hub");//запускает автотесты не локально а через selenoid
+        Configuration.remote = "https://user1:1234@"+System.getProperty("selenoid_url","selenoid.autotests.cloud/wd/hub");//запускает автотесты не локально а через selenoid
         Configuration.browser = System.getProperty("browser","chrome");
         Configuration.browserVersion = System.getProperty("browser_version","100.0"); //нельзя ставить версию больше чем на selenoid
         Configuration.browserSize = System.getProperty("browser_size", "1920x1080");
